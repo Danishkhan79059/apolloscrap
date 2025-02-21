@@ -19,6 +19,25 @@ function getUserInfo() {
     ? linkedInIconElement.closest("a")
     : null;
 
+  const industrye =
+    document.querySelector("span.zp_OrUpW")?.innerText.trim() ||
+    "Industry not found";
+  const locationElemente = document.querySelector(
+    "span.zp_FK63Y div > div:nth-child(2)"
+  );
+  const locatione = locationElemente
+    ? locationElemente.innerText.trim()
+    : "Location not found";
+
+
+
+  const employeeSizee =
+    document
+      .querySelector("span.zp_FK63Y .zp-info-row-value span")
+      ?.innerText.trim() || "Employee size not found";
+
+ 
+
   // Extract text or use default placeholders if elements are missing
   const userName = nameElement ? nameElement.innerText : "No name found.";
   const companyName = companyElement
@@ -43,6 +62,14 @@ function getUserInfo() {
     ? descriptionSpanElement.innerText
     : null;
 
+
+
+
+    const industryName = industrye;
+    const locationName = locatione;
+    const employeeNo = employeeSizee;
+    
+
   // Debug logs for development
   console.log("User's Name:", userName);
   console.log("Company Name:", companyName);
@@ -52,9 +79,10 @@ function getUserInfo() {
   console.log("LinkedIn URL:", linkedInUrl);
   console.log("Employee Information:", employees); // Log employee data
   console.log("Description :", companyDescription);
-
-  // Store only the employee data in localStorage
-  localStorage.setItem("employees", employees);
+  console.log("CompnayName", industryName);
+  console.log("LocationName", locationName);
+  console.log("emplyeeNo", employeeNo);
+  
 
   // Return all collected data
   return {
@@ -66,6 +94,9 @@ function getUserInfo() {
     linkedInUrl,
     employees,
     companyDescription,
+    industryName,
+    locationName,
+    employeeNo,
   };
 }
 
@@ -81,6 +112,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       linkedInUrl,
       employees,
       companyDescription,
+      industryName,
+      locationName,
+      employeeNo,
     } = getUserInfo();
     // Send all collected data back in the response
     sendResponse({
@@ -92,6 +126,9 @@ chrome.runtime.onMessage.addListener((message, sender, sendResponse) => {
       linkedInUrl,
       employees,
       companyDescription,
+      industryName,
+      locationName,
+      employeeNo,
     });
   }
 });

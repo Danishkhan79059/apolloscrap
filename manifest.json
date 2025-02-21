@@ -1,31 +1,36 @@
 {
-    "manifest_version": 3,
-    "name": "Danish leads",
-    "description": "Show apollo user name when clicked.",
-    "version": "1.0.0",
-    "permissions": ["activeTab"],
-    "host_permissions": [
-      "https://app.apollo.io/*"
-    ],
-    "action": {
+  "manifest_version": 3,
+  "name": "Danish Leads",
+  "description": "Show Apollo user name when clicked.",
+  "version": "1.0.0",
+  "permissions": ["activeTab","tabs"],
+  "host_permissions": [
+      "https://app.apollo.io/*",
+      "https://app.apollo.io/#/organizations/5e59d09b5721db00017a5bb0/people?finderViewId=6674b20eecfedd000184539f&organizationIds[]=5e59d09b5721db00017a5bb0"
+  ],
+  "action": {
       "default_popup": "popup.html",
       "default_icon": {
-        "16": "logo.png",
-        "48": "logo.png",
-        "128": "logo.png"
+          "16": "logo.png",
+          "48": "logo.png",
+          "128": "logo.png"
       }
-    },
-    "icons": {
-        "16": "logo.png",
-        "48": "logo.png",
-        "128": "logo.png"
-      },
- 
-    "content_scripts": [
-      {
-        "matches": ["https://app.apollo.io/*"],
-        "js": ["content.js"]
-      }
-    ]
+  },
+  "icons": {
+      "16": "logo.png",
+      "48": "logo.png",
+      "128": "logo.png"
+  },
+ "content_scripts": [
+  {
+    "matches": ["https://app.apollo.io/*"],
+    "js": ["content.js", "router.js"]
+   
   }
-  
+],
+
+  "background": {
+    "service_worker": "background.js"
+  }
+
+}

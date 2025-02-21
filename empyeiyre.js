@@ -59,17 +59,17 @@ document.addEventListener("DOMContentLoaded", () => {
           document.getElementById(
             "locationName"
           ).textContent = `location:${locationName}`;
-
           document.getElementById(
-            "employeeNo"
-          ).textContent = `emplyee:${employeeNo}`;
+            "emplyeeNo"
+          ).textContent = `Employee: ${employeeNo}`;
+          
 
           //New Click Button functionality
           document
             .getElementById("click-button")
             .addEventListener("click", function () {
               const encodedindustry = encodeURIComponent(industry);
-              const encodedEmployees = encodeURIComponent(employees);
+              const encodedEmployees = encodeURIComponent(employeeNo);
               const newTabUrl = `${linkedInUrl}?name=${encodedindustry}&employees=${encodedEmployees}`;
 
               // Open a new tab with the Apollo.io URL
@@ -100,7 +100,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const encodedEmployees = encodeURIComponent(employeeNo);
                 const encodedLocation = encodeURIComponent(locationName);
 
-                const newTabUrl = `?name=${encodedIndustry}&employees=${encodedEmployees}&location=${encodedLocation}`;
+                const newTabUrl = `${linkedInUrl}?name=${encodedIndustry}&employees=${encodedEmployees}&location=${encodedLocation}`;
 
                 // Send the dynamically generated URL to the background script
                 chrome.runtime.sendMessage(
@@ -128,6 +128,10 @@ document.addEventListener("DOMContentLoaded", () => {
       document.getElementById("industryName").textContent = "";
       document.getElementById("locationName").textContent = "";
       document.getElementById("employeeNo").textContent = "";
+      
+
+      
+
     }
   });
 });
